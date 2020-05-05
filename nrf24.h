@@ -210,7 +210,7 @@ void NRF24_begin(GPIO_TypeDef *nrf24PORT, uint16_t nrfCSN_Pin,
 	uint16_t nrfCE_Pin, SPI_HandleTypeDef *nrfSPI, TIM_HandleTypeDef *nrfTIM);
 
 // Microseconds delay function.
-void NRF24_DelayMicroSeconds(uint32_t uSec);
+void NRF24_DelayMicroSeconds(uint16_t uSec);
 
 // Chip select.
 void NRF24_csn(int state);

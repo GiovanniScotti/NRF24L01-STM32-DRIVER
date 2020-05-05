@@ -165,9 +165,15 @@ void NRF24_begin(GPIO_TypeDef *nrf24PORT, uint16_t nrfCSN_Pin, uint16_t nrfCE_Pi
 
 
 // Microseconds delay function.
-void NRF24_DelayMicroSeconds(uint32_t uSec) {
-	__HAL_TIM_SET_COUNTER(nrf24_htim, 0);
-	while(__HAL_TIM_GET_COUNTER(nrf24_htim) < uSec);
+void NRF24_DelayMicroSeconds(uint16_t uSec) {
+	uint16_t init_us = __HAL_TIM_GET_COUNTER(nrf24_htim);
+
+	while (1) {
+		if (__HAL_TIM_GET_COUNTER(nrf24_htim) - init_us > uSec) {
+			break;
+		}
+	}
+
 	return;
 }
 
